@@ -4,7 +4,7 @@ import { findSListingLinkFromGoogle } from './GoogleSearchService';
 const getLinkByListingNo = async (
 	listingNo : string
 ) => {
-	return await supabaseClient.from('link').select('*').eq('listingNo', listingNo.toString()).single();
+	return await supabaseClient.from('link').select('*').eq('listingNo', listingNo.toString()).limit(1);
 }
 
 const insertLinkToDB = async (

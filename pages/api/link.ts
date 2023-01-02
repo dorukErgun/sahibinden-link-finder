@@ -10,13 +10,13 @@ export default async function handler(
 
   const { listingNo } = req.query;
   if(!listingNo){
-    res.status(400).json({
+    return res.status(400).json({
       message : 'Listing number is missing.'
     })
-    return;
   }
 
   const { data, error } = await getLinkByListingNo(listingNo as string);
+  console.log(error);
   if(error){
     return res.status(500).json({
       message : "Internal server error."
@@ -42,6 +42,6 @@ export default async function handler(
   }
 
   return res.status(200).json({
-    link : data.link
+    link : data[0].link
   })
 }
