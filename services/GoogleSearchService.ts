@@ -1,4 +1,4 @@
-const findSahibindenListingLink = async (
+const findSListingLinkFromGoogle = async (
 	listingNo : string
 ) => {
 	const result = await fetch(`https://www.googleapis.com/customsearch/v1
@@ -10,8 +10,11 @@ const findSahibindenListingLink = async (
 		&num=1
 		&hl=tr
 	`);
-	const json = await result.json();
-	return json.items[0].link;
+	const jsonRes = await result.json();
+	if(!jsonRes){
+		return undefined;
+	}
+	return jsonRes.items[0].link;
 }
 
-export default findSahibindenListingLink;
+export { findSListingLinkFromGoogle }
