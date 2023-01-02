@@ -5,6 +5,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+
+  res.setHeader('Access-Control-Allow-Origin', "*");
+  res.setHeader('Access-Control-Allow-Headers', "*");
+
   const { listingNo } = req.query;
   if(!listingNo){
     res.status(400).json({
